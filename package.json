@@ -1,0 +1,23 @@
+{
+  "name": "realworld_NuxtJS",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev":"nuxt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wbbhacker/realworld_NuxtJS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wbbhacker/realworld_NuxtJS/issues"
+  },
+  "homepage": "https://github.com/wbbhacker/realworld_NuxtJS#readme",
+  "dependencies": {
+    "nuxt": "^2.14.7"
+  }
+}

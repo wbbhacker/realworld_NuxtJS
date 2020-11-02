@@ -12,18 +12,23 @@
           </p>
 
           <ul class="error-messages">
-            <li>That email is already taken</li>
+            <!-- template 不会被渲染出来 -->
+            <template v-for="(errorItems, itemsName) in errors">  
+               <li v-for="(errorReason , errorIndex) in errorItems" :key="errorIndex">
+                 {{itemsName}} {{errorReason}}
+               </li>
+            </template>
           </ul>
 
-          <form>
+          <form @submit.prevent="submitClick">
             <fieldset v-if="!isLogin" class="form-group">
-              <input class="form-control form-control-lg" type="text" placeholder="Your Name">
+              <input v-model="user.username" class="form-control form-control-lg" type="text" placeholder="Your Name" required>
             </fieldset>
             <fieldset class="form-group">
-              <input class="form-control form-control-lg" type="text" placeholder="Email">
+              <input v-model="user.email"  class="form-control form-control-lg" type="email" placeholder="Email" required>
             </fieldset>
             <fieldset class="form-group">
-              <input class="form-control form-control-lg" type="password" placeholder="Password">
+              <input v-model="user.password" class="form-control form-control-lg" type="password" placeholder="Password" required maxlength="8">
             </fieldset>
             <button class="btn btn-lg btn-primary pull-xs-right">
              {{ isLogin ? 'Sign in': 'Sign up'}} 
@@ -37,15 +42,52 @@
 </template>
 
 <script>
+
+import { login, register } from '@/api/user'
+
+import request from '@/utils/request'
 export default {
   name: 'loginIndex',
+  data(){
+    return {
+      user:{
+        username:'',
+        email:'',
+        password:''
+      },
+      errors:{} // 错误信息
+    }
+  },
   created(){
-    console.log(this)
+    // console.log(request)
   },
   computed:{
     isLogin(){
       return this.$route.name === 'login'
     }
+  },
+  methods:{
+
+    async submitClick(){
+
+      try {
+        const data = this.isLogin ?  
+        await login({
+          user:this.user
+        }) :
+        await register({
+          user:this.user
+        })
+
+        this.errors = {}
+        this.$router.push('/')
+
+      } catch (error) {
+        console.dir(error)
+        this.errors = error.response.data.errors
+      }
+    }
+    
   }
 }
 </script>

@@ -88,7 +88,8 @@
 
 <script>
 export default {
-  name: 'UserProFile'
+  middleware:'authenticated',
+  name: 'UserProFile',
 }
 </script>
 

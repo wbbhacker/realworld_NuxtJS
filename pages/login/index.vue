@@ -42,11 +42,12 @@
 </template>
 
 <script>
-
 import { login, register } from '@/api/user'
 
-import request from '@/utils/request'
+const Cookie = process.client ? require('js-cookie') : undefined
+
 export default {
+  middleware:'notAuthenticated',
   name: 'loginIndex',
   data(){
     return {
@@ -59,7 +60,6 @@ export default {
     }
   },
   created(){
-    // console.log(request)
   },
   computed:{
     isLogin(){
@@ -71,13 +71,20 @@ export default {
     async submitClick(){
 
       try {
-        const data = this.isLogin ?  
+        const { data } = this.isLogin ?  
         await login({
           user:this.user
         }) :
         await register({
           user:this.user
-        })
+        })  
+
+        this.$store.commit('setUser',{user:data.user})
+
+        // submitClick 一定是在客户端运行的所以不用在做判断了
+        // 为了防止刷新页面数据丢失，我们需要把数据持久化
+        
+        Cookie.set('user',data.user)
 
         this.errors = {}
         this.$router.push('/')

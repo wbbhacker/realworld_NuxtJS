@@ -51,5 +51,11 @@ export default {
         }
       ])
     }
+  },
+  // 注册插件
+  plugins:['~/plugins/request.js','~/plugins/dayjs.js'],
+  server: {
+    port: 8000, // default: 3000
+    host: 'localhost' // default: localhost,
   }
 }

@@ -122,8 +122,10 @@
 </template>
 
 <script>
+
 export default {
-  name: 'ArticleIndex'
+  name: 'ArticleIndex',
+  
 }
 </script>
 

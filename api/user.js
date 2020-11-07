@@ -37,3 +37,20 @@ export const unfollowUser = username => {
     method: 'DELETE',
   })
 }
+
+
+// 获取当前用户信息
+export const getUser = username => {
+  return request({
+    url: 'api/user',
+    method: 'GET',
+  })
+}
+// 更新用户信息
+export const updateUser = user => {
+  return request({
+    url: 'api/user',
+    method: 'PUT',
+    data: user
+  })
+}

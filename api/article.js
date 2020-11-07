@@ -59,3 +59,27 @@ export const getArticle = slug => {
     method: 'GET'
   })
 }
+
+
+
+// 获取文章评论
+export const getComments = slug => {
+  return request({
+    url: `/api/articles/${slug}/comments`,
+    method: 'GET'
+  })
+}
+
+
+// 添加评论
+export const addComment = (slug, comment) => {
+  return request({
+    url: `/api/articles/${slug}/comments`,
+    method: 'POST',
+    data:{
+      'comment':{
+        'body': comment
+      }
+    }
+  })
+}

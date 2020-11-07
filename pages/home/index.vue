@@ -165,7 +165,13 @@
 </template>
 
 <script>
-import { getArticles, getTag, getFeed ,deleteFavorite,addFavorite  } from '@/api/article'
+import {
+  getArticles,
+  getTag,
+  getFeed,
+  deleteFavorite,
+  addFavorite
+} from '@/api/article'
 import { mapState } from 'vuex'
 
 export default {
@@ -175,7 +181,8 @@ export default {
     const page = Number.parseInt(query.page) || 1
     const { tag } = query
     const tab = query.tab || 'global_feed'
-    const loadArticles =  store.state.user && tab === 'your_feed' ? getFeed : getArticles
+    const loadArticles =
+      store.state.user && tab === 'your_feed' ? getFeed : getArticles
     const [articleRes, tagRes] = await Promise.all([
       loadArticles({
         tag,
@@ -187,7 +194,7 @@ export default {
     const { articles, articlesCount } = articleRes.data
     const { tags } = tagRes.data
 
-    articles.forEach( article => article.favoriteDisabled = false)
+    articles.forEach(article => (article.favoriteDisabled = false))
 
     return {
       articles,
@@ -218,7 +225,6 @@ export default {
         await deleteFavorite(article.slug)
         article.favorited = false
         article.favoritesCount -= 1
-
       } else {
         // 添加点赞
         await addFavorite(article.slug)

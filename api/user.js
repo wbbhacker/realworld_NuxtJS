@@ -19,3 +19,21 @@ export const register = data => {
   })
 }
 
+
+
+// follow 用户
+export const followUser = username => {
+  return request({
+    url: `/api/profiles/${username}/follow`,
+    method: 'POST',
+  })
+}
+
+
+// unfollow 用户
+export const unfollowUser = username => {
+  return request({
+    url: `/api/profiles/${username}/follow`,
+    method: 'DELETE',
+  })
+}

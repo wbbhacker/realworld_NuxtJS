@@ -19,6 +19,7 @@
   "homepage": "https://github.com/wbbhacker/realworld_NuxtJS#readme",
   "dependencies": {
     "axios": "^0.21.0",
+    "markdown-it": "^12.0.2",
     "nuxt": "^2.14.7"
   },
   "devDependencies": {

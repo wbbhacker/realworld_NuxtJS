@@ -37,7 +37,7 @@ export default ({store})=>{
     console.log('<<<response:')
     // 对响应数据做点什么
     console.log(response.config.url)
-    console.log(response.data) 
+    console.dir(response) 
     return response
   }, function (error) {
     // 对响应错误做点什么

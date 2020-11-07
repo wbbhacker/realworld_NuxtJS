@@ -13,37 +13,37 @@ export default {
           component:resolve(__dirname,'pages/layout/'),
           children:[
             {
-              path:'', // 默认子路由
+              path:'', // 默认子路由 首页
               name:'home',
               component:resolve(__dirname,'pages/home/')
             },
             {
-              path: '/login', 
+              path: '/login', // 登录
               name: 'login',
               component: resolve(__dirname, 'pages/login/')
             },
             {
-              path: '/register', 
+              path: '/register',  //注册
               name: 'register',
               component: resolve(__dirname, 'pages/login/')
             },
             {
-              path: '/profile/:username',
+              path: '/profile/:username', // 个人
               name: 'profile',
               component: resolve(__dirname, 'pages/profile/')
             },
             {
-              path: '/settings',
+              path: '/settings', // 设置
               name: 'settings',
               component: resolve(__dirname, 'pages/settings/')
             },
             {
-              path: '/editor',
+              path: '/editor', // 编辑
               name: 'editor',
               component: resolve(__dirname, 'pages/editor/')
             },
             {
-              path: '/article/:slug',
+              path: '/article/:slug', // 文章
               name: 'article',
               component: resolve(__dirname, 'pages/article/')
             },

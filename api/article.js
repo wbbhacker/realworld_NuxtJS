@@ -103,3 +103,23 @@ export const createArticle = params => {
     data: params
   })
 }
+
+
+
+// 删除文章
+export const deleteArticle = slug => {
+  return request({
+    url: `/api/articles/${slug}`,
+    method: 'DELETE',
+  })
+}
+
+
+// 更新文章
+export const updateArticle = (slug, article) => {
+  return request({
+    url: `/api/articles/${slug}`,
+    method: 'PUT',
+    data: article
+  })
+}

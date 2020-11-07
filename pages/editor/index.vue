@@ -58,13 +58,14 @@
   </div>
 </template>
 <script>
-import { createArticle } from '@/api/article'
+import { createArticle , updateArticle } from '@/api/article'
 
 export default {
   middleware: 'authenticated',
   name: 'EditorIndex',
   data: () => {
     return {
+      update:false,
       editorDisable:false,
       tags:'',
       article: {
@@ -73,6 +74,16 @@ export default {
         body: '',
         tagList: []
       }
+    }
+  },
+  created(){
+    const { article } = this.$route.params
+    if(article){
+      this.article.title = article.title
+      this.article.description = article.description
+      this.article.body = article.body
+      this.slug = article.slug
+      this.update = true
     }
   },
   watch:{
@@ -85,15 +96,24 @@ export default {
       if(this.editorDisable) return
       this.editorDisable = true
       const { title,  description, body,tagList } = this.article
-      const { data } = await createArticle({
-        title,
-        description,
-        body,
-        tagList
-      })
+
+      const { data } = this.update ? 
+                await updateArticle(this.slug ,{
+                  title,
+                  description,
+                  body,
+                  tagList
+                }) :
+                await createArticle({
+                  title,
+                  description,
+                  body,
+                  tagList
+                })
       this.editorDisable = false
+      this.$router.push({ name:'article',params: { slug: data.article.slug}})
     }
-  }
+  },
 }
 </script>
 

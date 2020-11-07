@@ -88,11 +88,13 @@ export default {
       const { data } = await addComment(this.article.slug, this.commentBody)
       this.comments.unshift(data.comment)
       this.commentDisabled = false
+      this.commentBody = ''
     },
     async deleteComment(comentId){
 
       const {data} = await deleteComment(this.article.slug,comentId)
       this.getComments()
+      this.$router.push({ name:'home'})
 
     },
     async getComments(){

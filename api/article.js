@@ -93,3 +93,13 @@ export const deleteComment = (slug, id) => {
     method: 'DELETE'
   })
 }
+
+
+// 创建文章
+export const createArticle = params => {
+  return request({
+    url: '/api/articles',
+    method: 'POST',
+    data: params
+  })
+}

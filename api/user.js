@@ -54,3 +54,13 @@ export const updateUser = user => {
     data: user
   })
 }
+
+
+// 获取 profile
+export const getProfile = username => {
+  return request({
+    url: `/api/profiles/${username}`,
+    method: 'GET'
+  })
+}
+
